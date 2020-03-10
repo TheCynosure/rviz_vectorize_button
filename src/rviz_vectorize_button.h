@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011, Willow Garage, Inc.
+ * Copyright (c) 2012, Willow Garage, Inc.
  * Copyright (c) 2019, Joydeep Biswas joydeepb@cs.umass.edu
  * All rights reserved.
  *
@@ -27,44 +27,32 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
+#ifndef RVIZ_WRITE_BUTTON_H
+#define RVIZ_WRITE_BUTTON_H
 
-#include <ros/console.h>
-#include <rviz/visualization_manager.h>
+#ifndef Q_MOC_RUN
+#include <ros/ros.h>
+#include <rviz/tool.h>
+#endif
 
-#include "rviz_write_button/WriteMsg.h"
-#include "rviz_write_button.h"
+namespace rviz_vectorize_button {
 
-namespace rviz_write_button {
+class VectorizeButton : public rviz::Tool {
+Q_OBJECT
+public:
+  ros::Publisher publisher_;
 
-    WriteButton::WriteButton() {
-      ros::NodeHandle n_;
-      publisher_=  n_.advertise<rviz_write_button::WriteMsg>("/write_output",
-                                                             10);
-    }
+  VectorizeButton();
+  ~VectorizeButton();
 
-    WriteButton::~WriteButton() {
+  virtual void onInitialize();
 
-    }
+  virtual void activate();
+  virtual void deactivate();
 
-    void WriteButton::onInitialize() {
+  void Publish();
+};
 
-    }
+}  // namespace rviz_vectorize_button
 
-    void WriteButton::activate() {
-      Publish();
-
-    }
-
-    void WriteButton::deactivate() {
-    }
-
-    void WriteButton::Publish() {
-      rviz_write_button::WriteMsg write_msg;
-      write_msg.write = true;
-      publisher_.publish(write_msg);
-    }
-
-} // namespace rviz_write_button
-
-#include <pluginlib/class_list_macros.h>
-PLUGINLIB_EXPORT_CLASS(rviz_write_button::WriteButton, rviz::Tool)
+#endif // RVIZ_WRITE_BUTTON_H

@@ -18,21 +18,21 @@ rosbuild_genmsg()
 ## Here we specify which header files need to be run through "moc",
 ## Qt's meta-object compiler.
 qt4_wrap_cpp(MOC_FILES
-  src/rviz_write_button.h
+  src/rviz_vectorize_button.h
 )
 
 ## Here we specify the list of source files, including the output of
 ## the previous command which is stored in ``${MOC_FILES}``.
 set(SOURCE_FILES
-  src/rviz_write_button.cc
+  src/rviz_vectorize_button.cc
   ${MOC_FILES}
 )
 
 set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
 
-rosbuild_add_library(rviz_write_button
+rosbuild_add_library(rviz_vectorize_button
     ${SOURCE_FILES}
-    src/rviz_write_button.h
+    src/rviz_vectorize_button.h
     ${MOC_FILES})
-rosbuild_add_executable(rviz_write_button src/rviz_write_button.cc)
-target_link_libraries(rviz_write_button ${QT_LIBRARIES})
+rosbuild_add_executable(rviz_vectorize_button src/rviz_vectorize_button.cc)
+target_link_libraries(rviz_vectorize_button ${QT_LIBRARIES})

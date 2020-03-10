@@ -1,13 +1,13 @@
 <package>
-  <description brief="RViz Write Button">
+  <description brief="RViz Vectorize Button">
 
-     Publish message to trigger writing
+     Publish message to trigger vectorization
 
   </description>
   <author>John Bachman</author>
   <license>BSD</license>
   <review status="unreviewed" notes=""/>
-  <url>https://github.com/theCynosure/rviz_write_button</url>
+  <url>https://github.com/theCynosure/rviz_vectorize_button</url>
   <depend package="rviz"/>
   <depend package="std_msgs"/>
   <export>

@@ -1,4 +1,4 @@
-/home/jack/Dev/Tools/clion-2019.3.1/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/jack/Dev/Lab/rviz_write_button
+/home/jack/Dev/Tools/clion-2019.3.1/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/jack/Dev/Lab/rviz_vectorize_button
 -- The C compiler identification is GNU 7.4.0
 -- The CXX compiler identification is GNU 7.4.0
 -- Check for working C compiler: /usr/bin/cc
@@ -74,22 +74,22 @@ Call Stack (most recent call first):
 
 
 -- Found PythonInterp: /usr/bin/python (found version "2.7.17") 
-[rosbuild] Building package rviz_write_button
-[rosbuild] Error from directory check: /opt/ros/melodic/share/ros/core/rosbuild/bin/check_same_directories.py  /home/jack/Dev/Lab/rviz_write_button
+[rosbuild] Building package rviz_vectorize_button
+[rosbuild] Error from directory check: /opt/ros/melodic/share/ros/core/rosbuild/bin/check_same_directories.py  /home/jack/Dev/Lab/rviz_vectorize_button
 1
 Traceback (most recent call last):
   File "/opt/ros/melodic/share/ros/core/rosbuild/bin/check_same_directories.py", line 46, in <module>
     raise Exception
 Exception
 CMake Error at /opt/ros/melodic/share/ros/core/rosbuild/private.cmake:102 (message):
-  [rosbuild] rospack found package "rviz_write_button" at "", but the current
-  directory is "/home/jack/Dev/Lab/rviz_write_button".  You should
-  double-check your ROS_PACKAGE_PATH to ensure that packages are found in the
-  correct precedence order.
+  [rosbuild] rospack found package "rviz_vectorize_button" at "", but the
+  current directory is "/home/jack/Dev/Lab/rviz_vectorize_button".  You
+  should double-check your ROS_PACKAGE_PATH to ensure that packages are found
+  in the correct precedence order.
 Call Stack (most recent call first):
   /opt/ros/melodic/share/ros/core/rosbuild/public.cmake:177 (_rosbuild_check_package_location)
   CMakeLists.txt:6 (rosbuild_init)
 
 
 -- Configuring incomplete, errors occurred!
-See also "/home/jack/Dev/Lab/rviz_write_button/cmake-build-debug/CMakeFiles/CMakeOutput.log".
+See also "/home/jack/Dev/Lab/rviz_vectorize_button/cmake-build-debug/CMakeFiles/CMakeOutput.log".

@@ -1,5 +1,5 @@
-<library path="lib/librviz_write_button">
-  <class type="rviz_write_button::WriteButton"
+<library path="lib/librviz_vectorize_button">
+  <class type="rviz_vectorize_button::VectorizeButton"
          base_class_type="rviz::Tool">
     <description>
       A simple button to publish a message over /write_poses so that we can write the output of lidar slam.

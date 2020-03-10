@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2012, Willow Garage, Inc.
+ * Copyright (c) 2011, Willow Garage, Inc.
  * Copyright (c) 2019, Joydeep Biswas joydeepb@cs.umass.edu
  * All rights reserved.
  *
@@ -27,32 +27,44 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
-#ifndef RVIZ_WRITE_BUTTON_H
-#define RVIZ_WRITE_BUTTON_H
 
-#ifndef Q_MOC_RUN
-#include <ros/ros.h>
-#include <rviz/tool.h>
-#endif
+#include <ros/console.h>
+#include <rviz/visualization_manager.h>
 
-namespace rviz_write_button {
+#include "rviz_vectorize_button/WriteMsg.h"
+#include "rviz_vectorize_button.h"
 
-class WriteButton : public rviz::Tool {
-Q_OBJECT
-public:
-  ros::Publisher publisher_;
+namespace rviz_vectorize_button {
 
-  WriteButton();
-  ~WriteButton();
+    VectorizeButton::VectorizeButton() {
+      ros::NodeHandle n_;
+      publisher_=  n_.advertise<rviz_vectorize_button::WriteMsg>("/vectorize_output",
+                                                             10);
+    }
 
-  virtual void onInitialize();
+    VectorizeButton::~VectorizeButton() {
 
-  virtual void activate();
-  virtual void deactivate();
+    }
 
-  void Publish();
-};
+    void VectorizeButton::onInitialize() {
 
-}  // namespace rviz_write_button
+    }
 
-#endif // RVIZ_WRITE_BUTTON_H
+    void VectorizeButton::activate() {
+      printf("Publishing\n");
+      Publish();
+    }
+
+    void VectorizeButton::deactivate() {
+    }
+
+    void VectorizeButton::Publish() {
+      rviz_vectorize_button::WriteMsg write_msg;
+      write_msg.write = true;
+      publisher_.publish(write_msg);
+    }
+
+} // namespace rviz_vectorize_button
+
+#include <pluginlib/class_list_macros.h>
+PLUGINLIB_EXPORT_CLASS(rviz_vectorize_button::VectorizeButton, rviz::Tool)
