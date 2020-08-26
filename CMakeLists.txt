@@ -1,38 +1,24 @@
-cmake_minimum_required(VERSION 2.4.6)
-project(rviz_write_button)
+CMAKE_MINIMUM_REQUIRED(VERSION 2.8.3)
+project(rviz_vectorize_button)
 
-include($ENV{ROS_ROOT}/core/rosbuild/rosbuild.cmake)
-set(ROS_BUILD_TYPE RelWithDebInfo)
-rosbuild_init()
+FIND_PACKAGE(Qt5 COMPONENTS Core Gui REQUIRED)
+FIND_PACKAGE(catkin COMPONENTS message_runtime message_generation std_msgs roscpp rviz)
+SET(CMAKE_INCLUDE_CURRENT_DIR ON)
+SET(CMAKE_AUTOMOC ON)
 
-## This plugin includes Qt widgets, so we must include Qt like so:
-find_package(Qt4 COMPONENTS QtCore QtGui REQUIRED)
-include(${QT_USE_FILE})
+ADD_DEFINITIONS(-DQT_NO_KEYWORDS)
 
-## I prefer the Qt signals and slots to avoid defining "emit", "slots",
-## etc because they can conflict with boost signals, so define QT_NO_KEYWORDS here.
-add_definitions(-DQT_NO_KEYWORDS)
+add_message_files(DIRECTORY msg FILES WriteMsg.msg)
+generate_messages(DEPENDENCIES std_msgs)
 
-rosbuild_genmsg()
+qt5_wrap_cpp(MOC_FILES src/rviz_vectorize_button.h)
 
-## Here we specify which header files need to be run through "moc",
-## Qt's meta-object compiler.
-qt4_wrap_cpp(MOC_FILES
-  src/rviz_vectorize_button.h
-)
+catkin_package(
+  LIBRARIES rviz_vectorize_button
+  CATKIN_DEPENDS message_runtime std_msgs rviz)
 
-## Here we specify the list of source files, including the output of
-## the previous command which is stored in ``${MOC_FILES}``.
-set(SOURCE_FILES
-  src/rviz_vectorize_button.cc
-  ${MOC_FILES}
-)
+include_directories(${catkin_INCLUDE_DIRS})
+add_library(rviz_vectorize_button src/rviz_vectorize_button.cc ${MOC_FILES})
+target_link_libraries(rviz_vectorize_button Qt5::Core Qt5::Gui)
+add_dependencies(rviz_vectorize_button rviz_vectorize_button_generate_messages_cpp ${catkin_EXPORTED_TARGETS})
 
-set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
-
-rosbuild_add_library(rviz_vectorize_button
-    ${SOURCE_FILES}
-    src/rviz_vectorize_button.h
-    ${MOC_FILES})
-rosbuild_add_executable(rviz_vectorize_button src/rviz_vectorize_button.cc)
-target_link_libraries(rviz_vectorize_button ${QT_LIBRARIES})

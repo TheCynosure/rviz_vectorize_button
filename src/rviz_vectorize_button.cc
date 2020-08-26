@@ -28,7 +28,6 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include <ros/console.h>
 #include <rviz/visualization_manager.h>
 
 #include "rviz_vectorize_button/WriteMsg.h"
